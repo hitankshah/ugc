@@ -185,12 +185,13 @@ export function VideoGeneration() {
 
         <div className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-3">
+            <label className="block text-sm font-semibold text-slate-900 mb-3">
               Step 1: Select 2-3 Product Images
             </label>
             {assets.length === 0 ? (
-              <div className="text-center py-8 bg-slate-900 rounded-lg border border-slate-700">
-                <p className="text-slate-400">No product assets available. Generate or upload images first.</p>
+              <div className="text-center py-12 bg-slate-50 rounded-xl border-2 border-slate-200">
+                <p className="text-slate-600 font-medium">No product assets available</p>
+                <p className="text-slate-500 text-sm mt-1">Generate or upload images first</p>
               </div>
             ) : (
               <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-3">
@@ -198,10 +199,10 @@ export function VideoGeneration() {
                   <button
                     key={asset.id}
                     onClick={() => toggleAssetSelection(asset.id)}
-                    className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${
+                    className={`relative aspect-square rounded-2xl overflow-hidden border-2 transition-all ${
                       selectedAssets.includes(asset.id)
-                        ? 'border-blue-500 ring-2 ring-blue-500/50'
-                        : 'border-slate-700 hover:border-slate-500'
+                        ? 'border-blue-500 ring-2 ring-blue-500/50 shadow-md'
+                        : 'border-slate-200 hover:border-blue-300 shadow-sm hover:shadow-md'
                     }`}
                   >
                     <img
@@ -222,31 +223,31 @@ export function VideoGeneration() {
                 ))}
               </div>
             )}
-            <p className="text-xs text-slate-400 mt-2">Selected: {selectedAssets.length}/3</p>
+            <p className="text-xs text-slate-600 font-medium mt-3">Selected: {selectedAssets.length}/3</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className="block text-sm font-semibold text-slate-900 mb-2">
                 Product Name
               </label>
               <input
                 type="text"
                 value={productName}
                 onChange={(e) => setProductName(e.target.value)}
-                placeholder="e.g., Premium Wireless Headphones"
-                className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Premium Wireless Headphones"
+                className="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className="block text-sm font-semibold text-slate-900 mb-2">
                 Video Model
               </label>
               <select
                 value={selectedModel}
                 onChange={(e) => setSelectedModel(e.target.value)}
-                className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl text-slate-900 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"
               >
                 {VIDEO_MODELS.map((model) => (
                   <option key={model.id} value={model.id}>
@@ -258,38 +259,38 @@ export function VideoGeneration() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">
-              Product Context (Use-case, Audience, Benefits)
+            <label className="block text-sm font-semibold text-slate-900 mb-2">
+              Product Context
             </label>
             <textarea
               value={productContext}
               onChange={(e) => setProductContext(e.target.value)}
-              placeholder="e.g., Lifestyle product for young professionals, emphasize noise-cancellation and comfort"
-              className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+              placeholder="Lifestyle for young professionals, emphasize quality and design"
+              className="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all resize-none"
               rows={3}
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">
+            <label className="block text-sm font-semibold text-slate-900 mb-2">
               Video Idea Prompt
             </label>
             <textarea
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-              placeholder="Describe the video concept in simple terms..."
-              className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+              placeholder="Describe the video concept..."
+              className="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all resize-none"
               rows={3}
             />
           </div>
 
           {showEnhancement && enhancedPrompt && (
-            <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
+            <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4">
               <div className="flex items-start gap-3">
-                <Sparkles className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                <Sparkles className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-blue-300 mb-2">AI-Enhanced Prompt</p>
-                  <p className="text-sm text-slate-300">{enhancedPrompt}</p>
+                  <p className="text-sm font-semibold text-slate-900 mb-2">AI-Enhanced Prompt</p>
+                  <p className="text-sm text-slate-700">{enhancedPrompt}</p>
                 </div>
               </div>
             </div>
@@ -299,26 +300,26 @@ export function VideoGeneration() {
             <button
               onClick={handleEnhancePreview}
               disabled={!prompt.trim() || !productName.trim()}
-              className="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-lg transition-colors flex items-center gap-2 disabled:opacity-50"
+              className="px-6 py-3 bg-slate-200 hover:bg-slate-300 text-slate-900 font-semibold rounded-xl transition-all flex items-center gap-2 disabled:opacity-50"
             >
               <Sparkles className="w-5 h-5" />
-              Preview Enhancement
+              Preview
             </button>
 
             <button
               onClick={handleGenerate}
               disabled={generating || !prompt.trim() || !productName.trim() || selectedAssets.length === 0}
-              className="flex-1 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+              className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50 shadow-md"
             >
               {generating ? (
                 <>
                   <Loader2 className="w-5 h-5 animate-spin" />
-                  Generating Video...
+                  Generating...
                 </>
               ) : (
                 <>
                   <Video className="w-5 h-5" />
-                  Generate Video ({selectedModel_?.cost} credits)
+                  Generate ({selectedModel_?.cost} credits)
                 </>
               )}
             </button>
@@ -326,30 +327,33 @@ export function VideoGeneration() {
         </div>
       </div>
 
-      <div className="bg-slate-800 rounded-xl p-6 border border-slate-700">
-        <h3 className="text-lg font-semibold text-white mb-4">Your Video Generations</h3>
+      <div className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
+        <h3 className="text-xl font-bold text-slate-900 mb-6">Your Videos</h3>
 
         {generations.length === 0 ? (
-          <div className="text-center py-12 text-slate-400">
-            <Video className="w-12 h-12 mx-auto mb-3 opacity-50" />
-            <p>No videos generated yet.</p>
+          <div className="text-center py-16">
+            <div className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <Video className="w-8 h-8 text-slate-400" />
+            </div>
+            <p className="text-slate-600 font-medium">No videos generated yet</p>
+            <p className="text-slate-500 text-sm mt-1">Create your first UGC video to see it here</p>
           </div>
         ) : (
           <div className="space-y-4">
             {generations.map((gen) => (
-              <div key={gen.id} className="bg-slate-900 rounded-lg p-4 border border-slate-700">
+              <div key={gen.id} className="bg-slate-50 rounded-xl p-4 border border-slate-200 hover:border-blue-300 transition-all">
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <h4 className="font-semibold text-white">{gen.product_name}</h4>
-                    <p className="text-sm text-slate-400 mt-1">{gen.original_prompt}</p>
+                    <h4 className="font-semibold text-slate-900">{gen.product_name}</h4>
+                    <p className="text-sm text-slate-600 mt-1 line-clamp-1">{gen.original_prompt}</p>
                   </div>
                   <span
-                    className={`px-3 py-1 rounded-full text-xs font-medium ${
+                    className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${
                       gen.status === 'completed'
-                        ? 'bg-green-500/20 text-green-400'
+                        ? 'bg-green-100 text-green-700'
                         : gen.status === 'processing'
-                        ? 'bg-yellow-500/20 text-yellow-400'
-                        : 'bg-red-500/20 text-red-400'
+                        ? 'bg-yellow-100 text-yellow-700'
+                        : 'bg-red-100 text-red-700'
                     }`}
                   >
                     {gen.status}
@@ -358,18 +362,18 @@ export function VideoGeneration() {
 
                 {gen.status === 'completed' && gen.video_url && (
                   <div className="mt-3 flex items-center gap-3">
-                    <div className="flex-1 bg-slate-800 rounded px-3 py-2 text-sm text-slate-300 truncate">
+                    <div className="flex-1 bg-white rounded-lg px-3 py-2 text-sm text-slate-600 truncate border border-slate-200">
                       {gen.video_url}
                     </div>
-                    <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center gap-2">
+                    <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center gap-2 font-medium">
                       <Play className="w-4 h-4" />
                       View
                     </button>
                   </div>
                 )}
 
-                <div className="mt-3 flex items-center gap-4 text-xs text-slate-500">
-                  <span>Model: {gen.model_used}</span>
+                <div className="mt-3 flex items-center gap-4 text-xs text-slate-500 font-medium">
+                  <span>{gen.model_used}</span>
                   <span>•</span>
                   <span>{new Date(gen.created_at).toLocaleDateString()}</span>
                 </div>
